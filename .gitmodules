@@ -1,0 +1,3 @@
+[submodule "drivers/sdhci"]
+	path = drivers/sdhci
+	url = https://github.com/heyuanjie87/linux-sdhci-rtt.git

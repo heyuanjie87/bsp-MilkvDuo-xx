@@ -1,0 +1,12 @@
+from building import *
+
+cwd     = GetCurrentDir()
+src     = []
+CPPDEFINES = []
+CPPPATH = []
+
+src += Glob('*.c')
+
+group = DefineGroup('crom-builtin', src, depend = ['RT_USING_DFS_CROMFS', 'BSP_ROOTFS_TYPE_CROMFS'], CPPDEFINES = CPPDEFINES, CPPPATH = CPPPATH)
+
+Return('group')
