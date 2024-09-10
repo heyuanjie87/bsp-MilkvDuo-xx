@@ -36,7 +36,7 @@ def mkboot(prjpath, file, board, storage):
         tmpbootfile=fr"{prjpath}/boot.emmc"
         filecombine("mbr.img", fr"{dtbpath}/rtthread.dtb", tmpbootfile)
 
-        cmd = fr'python3 image_tool/raw2cimg.py tmpbootfile {installdir} partition_emmc.xml'
+        cmd = fr'python3 image_tool/raw2cimg.py {tmpbootfile} {installdir} partition_emmc.xml'
         os.system(cmd)
         os.remove(tmpbootfile)
     else:
