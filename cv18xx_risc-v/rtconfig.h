@@ -66,8 +66,6 @@
 #define ARCH_MM_MMU
 #define KERNEL_VADDR_START 0xFFFFFFC000200000
 #define ARCH_RISCV
-#define ARCH_RISCV_FPU
-#define ARCH_RISCV_FPU_D
 #define ARCH_RISCV64
 #define ARCH_USING_NEW_CTX_SWITCH
 #define ARCH_USING_RISCV_COMMON64
@@ -483,40 +481,25 @@
 /* end of Arduino libraries */
 /* end of RT-Thread online packages */
 
-/* Privated Packages of RealThread */
-
-
-/* Network Utilities */
-
-/* end of Network Utilities */
-
-/* RT-Thread Smart */
-
-#define PKG_USING_UKERNEL
-#define PKG_USING_UKERNEL_LATEST_VERSION
-#define RT_USING_NETIF_LOOPBACK
-//#define RT_USING_DFS_PROCFS
-#define RT_USING_DFS_CMDFS
-#define SAL_USING_AF_UNIX
-/* end of RT-Thread Smart */
-/* end of Privated Packages of RealThread */
-
 /* General Drivers Configuration */
 
 #define BSP_USING_UART
-#define BSP_USING_UART0
-#define BSP_UART0_RX_PINNAME "UART0_RX"
-#define BSP_UART0_TX_PINNAME "UART0_TX"
-#define BSP_UART_IRQ_BASE 44
+#define RT_USING_UART0
+#define UART_IRQ_BASE 44
 /* end of General Drivers Configuration */
 #define BSP_USING_CV18XX
 #define C906_PLIC_PHY_ADDR 0x70000000
+#define TIMER_CLK_FREQ 25000000
 #define IRQ_MAX_NR 101
 #define BSP_GPIO_IRQ_BASE 60
 #define BSP_SYS_GPIO_IRQ_BASE 70
 #define __STACKSIZE__ 8192
 #define SOC_TYPE_SG2002
 #define BOARD_TYPE_MILKV_DUO256M
+#define PKG_USING_SDHCI
+#define SDHCI_PLATFORM_CVITEK
+#define SDHCI_PLATFORM_CVITEK_USING_EXAMPLE
+#define SDHCI_PLATFORM_CVITEK_EMMC_ENABLE
 #define BSP_ROOTFS_TYPE_CROMFS
 
 #endif
