@@ -40,10 +40,12 @@ def main():
         cmd = fr'image_tool/mkimage -f {dtbpath}/multi.its -r {dtbpath}/rtthread.dtb'
         os.system(cmd)
 
-        filecombine("mbr.img", fr"{dtbpath}/rtthread.dtb", fr"{prjpath}/boot.emmc")
+        tmpbootfile=fr"{prjpath}/boot.emmc"
+        filecombine("mbr.img", fr"{dtbpath}/rtthread.dtb", tmpbootfile)
 
-        cmd = fr'python3 image_tool/raw2cimg.py {prjpath}/boot.emmc {installdir} partition_emmc.xml'
+        cmd = fr'python3 image_tool/raw2cimg.py tmpbootfile {installdir} partition_emmc.xml'
         os.system(cmd)
+        os.remove(tmpbootfile)
     else:
         cmd = fr'image_tool/mkimage -f {dtbpath}/multi.its -r {installdir}/boot.{STORAGE_TYPE}'
         os.system(cmd)

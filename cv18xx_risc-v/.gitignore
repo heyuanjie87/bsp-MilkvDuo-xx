@@ -1,4 +1,5 @@
 packages/
+build/
 rtthread.bin
 rtthread.elf
 rtthread.map
