@@ -40,8 +40,10 @@
 #define writew(v, c)    ({ __io_bw(); __raw_writew((v), (c)); __io_aw(); })
 #define writel(v, c)    ({ __io_bw(); __raw_writel((v), (c)); __io_aw(); })
 
+#ifdef CONFIG_64BIT
 #define readq(c)    ({ u64 __v; __io_br(); __v = __raw_readq(c); __io_ar(__v); __v; })
 #define writeq(v, c)    ({ __io_bw(); __raw_writeq((v), (c)); __io_aw(); })
+#endif // CONFIG_64BIT
 
 #else
 #define __raw_readb(a)        (*(volatile unsigned char *)(a))

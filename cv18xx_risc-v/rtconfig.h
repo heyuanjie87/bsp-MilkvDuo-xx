@@ -15,10 +15,10 @@
 #define RT_USING_HOOKLIST
 #define RT_USING_IDLE_HOOK
 #define RT_IDLE_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 8192
+#define IDLE_THREAD_STACK_SIZE 16384
 #define RT_USING_TIMER_SOFT
 #define RT_TIMER_THREAD_PRIO 4
-#define RT_TIMER_THREAD_STACK_SIZE 8192
+#define RT_TIMER_THREAD_STACK_SIZE 16384
 #define RT_USING_CPU_USAGE_TRACER
 
 /* kservice optimization */
@@ -47,7 +47,6 @@
 /* Memory Management */
 
 #define RT_PAGE_MAX_ORDER 11
-#define RT_USING_MEMPOOL
 #define RT_USING_SLAB
 #define RT_USING_SLAB_AS_HEAP
 #define RT_USING_HEAP
@@ -67,6 +66,8 @@
 #define ARCH_MM_MMU
 #define KERNEL_VADDR_START 0xFFFFFFC000200000
 #define ARCH_RISCV
+#define ARCH_RISCV_FPU
+#define ARCH_RISCV_FPU_D
 #define ARCH_RISCV64
 #define ARCH_USING_NEW_CTX_SWITCH
 #define ARCH_USING_RISCV_COMMON64
@@ -98,7 +99,7 @@
 #define RT_USING_DFS
 #define DFS_USING_POSIX
 #define DFS_USING_WORKDIR
-#define DFS_FD_MAX 16
+#define DFS_FD_MAX 128
 #define RT_USING_DFS_V2
 #define RT_USING_DFS_ELMFAT
 
@@ -152,6 +153,7 @@
 #define RT_USING_ZERO
 #define RT_USING_RANDOM
 #define RT_USING_RTC
+#define RT_USING_SOFT_RTC
 #define RT_USING_SDIO
 #define RT_SDIO_STACK_SIZE 8192
 #define RT_SDIO_THREAD_PRIORITY 15
@@ -481,27 +483,40 @@
 /* end of Arduino libraries */
 /* end of RT-Thread online packages */
 
+/* Privated Packages of RealThread */
+
+
+/* Network Utilities */
+
+/* end of Network Utilities */
+
+/* RT-Thread Smart */
+
+#define PKG_USING_UKERNEL
+#define PKG_USING_UKERNEL_LATEST_VERSION
+#define RT_USING_NETIF_LOOPBACK
+//#define RT_USING_DFS_PROCFS
+#define RT_USING_DFS_CMDFS
+#define SAL_USING_AF_UNIX
+/* end of RT-Thread Smart */
+/* end of Privated Packages of RealThread */
+
 /* General Drivers Configuration */
 
 #define BSP_USING_UART
-#define RT_USING_UART0
-#define UART_IRQ_BASE 44
-#define BSP_USING_SDH
+#define BSP_USING_UART0
+#define BSP_UART0_RX_PINNAME "UART0_RX"
+#define BSP_UART0_TX_PINNAME "UART0_TX"
+#define BSP_UART_IRQ_BASE 44
 /* end of General Drivers Configuration */
 #define BSP_USING_CV18XX
 #define C906_PLIC_PHY_ADDR 0x70000000
-#define IRQ_MAX_NR 64
-#define TIMER_CLK_FREQ 25000000
-#define GPIO_IRQ_BASE 60
-#define SYS_GPIO_IRQ_BASE 70
+#define IRQ_MAX_NR 101
+#define BSP_GPIO_IRQ_BASE 60
+#define BSP_SYS_GPIO_IRQ_BASE 70
 #define __STACKSIZE__ 8192
 #define SOC_TYPE_SG2002
-#define BOARD_TYPE_MILKV_DUOS_EMMC
-#define PKG_USING_SDHCI
-#define SDHCI_PLATFORM_CVITEK
-#define SDHCI_PLATFORM_CVITEK_USING_EXAMPLE
-#define SDHCI_PLATFORM_CVITEK_EMMC_ENABLE
-#define PKG_USING_EXT4
+#define BOARD_TYPE_MILKV_DUO256M
 #define BSP_ROOTFS_TYPE_CROMFS
 
 #endif

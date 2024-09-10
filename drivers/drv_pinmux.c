@@ -14,7 +14,6 @@
 #include "mmio.h"
 #include "pinctrl.h"
 #include "drv_pinmux.h"
-#include "drv_ioremap.h"
 
 #define DBG_TAG              "drv.pinmux"
 #define DBG_LVL               DBG_INFO
@@ -231,7 +230,7 @@ const struct fselect pin_selects_array[][8] = {
 /* PAD_AUD_AOUTR    */ {FS_NONE,             FS_NONE,            FS_NONE,           {XGPIOC_24, 3},   {IIS1_DI, 4},   {IIS2_DO, 5},     {IIS1_DO, 6},           FS_NONE},
 };
 
-#elif defined(SOC_TYPE_SG2002)
+#elif defined(SOC_TYPE_SG2002) || defined(SOC_TYPE_SG2000)
 
 struct fmux pinmux_array[] = {
     FS_PINMUX(CAM_MCLK0),
@@ -479,18 +478,6 @@ const struct fselect pin_selects_array[][8] = {
 
 #endif
 
-static rt_ubase_t pinmux_base = RT_NULL;
-
-rt_ubase_t pinmux_base_ioremap(void)
-{
-    if (pinmux_base == RT_NULL)
-    {
-        pinmux_base = (rt_size_t)rt_ioremap((void*)0x03001000, 0x1000);
-    }
-
-    return pinmux_base;
-}
-
 static int8_t pinmux_get_index(uint8_t pin_index, fs_type func_type)
 {
     const struct fselect *p;
@@ -554,4 +541,18 @@ int pinmux_config(const char *pin_name, fs_type func_type, const char *whitelist
     pinmux_array[index].selected = 1;
     mmio_clrsetbits_32(PINMUX_BASE + p_fmux->addr, p_fmux->mask << p_fmux->offset, select);
     return RT_EOK;
+}
+
+#include <ioremap.h>
+
+static rt_ubase_t pinmux_base = RT_NULL;
+
+rt_ubase_t pinmux_base_ioremap(void)
+{
+    if (pinmux_base == RT_NULL)
+    {
+        pinmux_base = (rt_size_t)rt_ioremap((void*)0x03001000, 0x1000);
+    }
+
+    return pinmux_base;
 }
