@@ -18,25 +18,18 @@ def filecombine(mbr, boot, out):
     fname.close()
 
 
-def main():
-    prjpath = sys.argv[1]
-    file = sys.argv[2]
-    board = sys.argv[3]
-
-    STORAGE_TYPE = 'emmc'
-    if "sd" in board:
-        STORAGE_TYPE = "sd"
-
+def mkboot(prjpath, file, board, storage):
     dtbpath = fr'{prjpath}/resource/dtb/{board}'
 
     print("start compress kernel...")
+
     cmd = fr'lzma -c -9 -f -k {prjpath}/{file} > {dtbpath}/Image.lzma'  
     os.system(cmd)
 
     installdir = 'install/' + board
     os.makedirs(installdir, exist_ok=True)
-    
-    if STORAGE_TYPE == "emmc":
+
+    if storage == "emmc":
         cmd = fr'image_tool/mkimage -f {dtbpath}/multi.its -r {dtbpath}/rtthread.dtb'
         os.system(cmd)
 
@@ -47,8 +40,25 @@ def main():
         os.system(cmd)
         os.remove(tmpbootfile)
     else:
-        cmd = fr'image_tool/mkimage -f {dtbpath}/multi.its -r {installdir}/boot.{STORAGE_TYPE}'
+        cmd = fr'image_tool/mkimage -f {dtbpath}/multi.its -r {installdir}/boot.{storage}'
         os.system(cmd)
+
+
+def main():
+    prjpath = sys.argv[1]
+    file = sys.argv[2]
+    board = sys.argv[3]
+
+    STORAGE_TYPE = 'emmc'
+    if "sd" in board:
+        STORAGE_TYPE = "sd"
+
+    BOARD = board
+    if "duos" in board:
+        BOARD = board + "-emmc"
+
+    mkboot(prjpath, file, BOARD, STORAGE_TYPE)
+
 
 if __name__ == "__main__":
     main()

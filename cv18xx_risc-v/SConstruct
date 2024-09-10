@@ -46,8 +46,8 @@ if GetDepend('RT_USING_SMART'):
 if GetDepend('BOARD_TYPE_MILKV_DUO256M'):
     rtconfig.BOARD = 'milkv-duo256m-sd'
 
-if GetDepend('BOARD_TYPE_MILKV_DUOS_EMMC'):
-    rtconfig.BOARD = 'milkv-duos-emmc'
+if GetDepend('BOARD_TYPE_MILKV_DUOS'):
+    rtconfig.BOARD = 'milkv-duos'
 
 # include libraries
 objs.extend(SConscript(drivers_path_prefix + '/SConscript', variant_dir='build/drivers', duplicate=0))

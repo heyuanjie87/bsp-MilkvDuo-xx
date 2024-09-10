@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <rtdevice.h>
 
-#if defined(BOARD_TYPE_MILKV_DUO256M) || defined(BOARD_TYPE_MILKV_DUO256M_SPINOR) || defined(BOARD_TYPE_MILKV_DUOS_EMMC)
+#if defined(BOARD_TYPE_MILKV_DUO256M) || defined(BOARD_TYPE_MILKV_DUO256M_SPINOR) || defined(BOARD_TYPE_MILKV_DUOS)
 #define LED_PIN     "E02" /* Onboard LED pins */
 #elif defined(BOARD_TYPE_MILKV_DUO) || defined(BOARD_TYPE_MILKV_DUO_SPINOR)
 #define LED_PIN     "C24" /* Onboard LED pins */

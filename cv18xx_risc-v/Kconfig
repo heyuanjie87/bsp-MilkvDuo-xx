@@ -61,11 +61,11 @@ config SOC_TYPE_SG2002
 
 choice
     prompt "Board Type"
-    default BOARD_TYPE_MILKV_DUOS_EMMC
+    default BOARD_TYPE_MILKV_DUOS
 
-    config BOARD_TYPE_MILKV_DUOS_EMMC
+    config BOARD_TYPE_MILKV_DUOS
         select SOC_TYPE_SG2002
-        bool "milkv-duos-emmc"
+        bool "milkv-duos"
 
     config BOARD_TYPE_MILKV_DUO256M
         select SOC_TYPE_SG2002
