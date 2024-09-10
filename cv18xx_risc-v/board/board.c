@@ -20,7 +20,7 @@
 #include "page.h"
 #include "lwp_arch.h"
 
-/* must defined as 0xFFFFFFC000200000 */
+/* respect to boot loader, must be 0xFFFFFFC000200000 */
 RT_STATIC_ASSERT(kmem_region, KERNEL_VADDR_START == 0xFFFFFFC000200000);
 
 rt_region_t init_page_region = {(rt_size_t)RT_HW_PAGE_START, (rt_size_t)RT_HW_PAGE_END};

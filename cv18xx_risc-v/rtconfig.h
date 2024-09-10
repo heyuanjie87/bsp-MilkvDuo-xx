@@ -484,8 +484,10 @@
 /* General Drivers Configuration */
 
 #define BSP_USING_UART
-#define RT_USING_UART0
-#define UART_IRQ_BASE 44
+#define BSP_USING_UART0
+#define BSP_UART0_RX_PINNAME "UART0_RX"
+#define BSP_UART0_TX_PINNAME "UART0_TX"
+#define BSP_UART_IRQ_BASE 44
 /* end of General Drivers Configuration */
 #define BSP_USING_CV18XX
 #define C906_PLIC_PHY_ADDR 0x70000000
