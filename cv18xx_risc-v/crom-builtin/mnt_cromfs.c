@@ -35,11 +35,11 @@ struct _mount_table _mount_table[] = {
 
 };
 
-static int _wait_device_ready(const char* devname)
+static int _wait_device_ready(const char *devname)
 {
     int k;
 
-    for(k = 0; k < 10; k++)
+    for (k = 0; k < 10; k++)
     {
         if (rt_device_find(devname) != RT_NULL)
         {
@@ -76,15 +76,15 @@ int mnt_init(void)
             }
 
             if (dfs_mount(_mount_table[i].dev_name, _mount_table[i].mount_point,
-                        _mount_table[i].fs_name, _mount_table[i].rwflag, _mount_table[i].data) != 0)
+                          _mount_table[i].fs_name, _mount_table[i].rwflag, _mount_table[i].data) != 0)
             {
                 LOG_E("Dir %s %s mount failed!", _mount_table[i].mount_point,
-                    _mount_table[i].dev_name ? _mount_table[i].dev_name : _mount_table[i].fs_name);
+                      _mount_table[i].dev_name ? _mount_table[i].dev_name : _mount_table[i].fs_name);
             }
             else
             {
                 LOG_I("Dir %s %s mount ok!", _mount_table[i].mount_point,
-                    _mount_table[i].dev_name ? _mount_table[i].dev_name : _mount_table[i].fs_name);
+                      _mount_table[i].dev_name ? _mount_table[i].dev_name : _mount_table[i].fs_name);
             }
         }
     }
@@ -108,4 +108,12 @@ int mnt_init(void)
 
     return 0;
 }
+#ifndef CROM_AUTOMNT_OFF
 INIT_ENV_EXPORT(mnt_init);
+#else
+static void mcrom(int argc, char **argv)
+{
+    mnt_init();
+}
+MSH_CMD_EXPORT(mcrom, mount crom);
+#endif
