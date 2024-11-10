@@ -3,7 +3,7 @@
 编译后内核烧录文件位于install/BOARD目录
 
 # 将根文件系统编译进内核
-
+(如果你不想自己制作可以下载此处文件 https://github.com/heyuanjie87/bsp-k230/tree/main/prebuild)
 为了方便测试，可以将根文件系统制作成CROMFS格式转换成C代码编译进内核。
 
 1. 在 https://github.com/RT-Thread/userapps 页面下载预编译镜像
@@ -35,7 +35,7 @@ sudo ./cromfs-tool-x64 dir crom.img ./
 
 # usb烧录emmc版镜像
 
-* 1. 对原始ROOTFS镜像文件处理成cimg (可选)
+* 1. 对原始ROOTFS镜像文件处理成cimg (非必要步骤,能支持smart的ext4文件系统暂未开源)
 
 ```
 python3 image_tool/raw2cimg.py rootfs_ext4.emmc install/milkv-duos-emmc partition_emmc.xml
