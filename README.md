@@ -4,6 +4,7 @@
 
 # 将根文件系统编译进内核
 (如果你不想自己制作可以下载此处文件 https://github.com/heyuanjie87/bsp-k230/tree/main/prebuild)
+
 为了方便测试，可以将根文件系统制作成CROMFS格式转换成C代码编译进内核。
 
 1. 在 https://github.com/RT-Thread/userapps 页面下载预编译镜像
